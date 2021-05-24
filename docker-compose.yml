@@ -1,0 +1,67 @@
+version: '3'
+
+services:
+  backend:
+    container_name: yab_testing_system.backend
+    build:
+      context: .
+      dockerfile: ./docker/backend.Dockerfile
+    networks:
+      - yab.network
+    restart: always
+
+  frontend:
+    container_name: yab_testing_system.frontend
+    build:
+      context: .
+      dockerfile: ./docker/frontend.Dockerfile
+    networks:
+      - yab.network
+
+  broker:
+    container_name: yab_testing_system.broker
+    image: 'redis:alpine'
+    command: redis-server /code/config/broker.conf
+    networks:
+      - yab.network
+    restart: always
+
+  redis:
+    container_name: yab_testing_system.redis
+    image: 'redis:alpine'
+    command: redis-server /code/config/redis.conf
+    networks:
+      - yab.network
+    restart: always
+
+  celery:
+    container_name: yab_testing_system.celery
+    build:
+      context: .
+      dockerfile: ./docker/backend.Dockerfile
+    command: bash -c "cd /code/backend && celery -A app.celery worker -l info"
+    networks:
+      - yab.network
+    depends_on:
+      - broker
+    restart: always
+
+  proxy:
+    container_name: yab_testing_system.proxy
+    build:
+      context: .
+      dockerfile: ./docker/proxy.Dockerfile
+    networks:
+      - yab.network
+    depends_on:
+      - frontend
+      - backend
+    volumes:
+      - ./docker/nginx.proxy.conf:/etc/nginx/nginx.conf:ro
+      - ./media:/code/media
+    ports:
+      - 80:80
+    restart: always
+
+networks:
+  yab.network:

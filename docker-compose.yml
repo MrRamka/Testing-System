@@ -26,14 +26,6 @@ services:
       - yab.network
     restart: always
 
-  redis:
-    container_name: yab_testing_system.redis
-    image: 'redis:alpine'
-    command: redis-server /code/config/redis.conf
-    networks:
-      - yab.network
-    restart: always
-
   celery:
     container_name: yab_testing_system.celery
     build:

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models import Test, QuestionType, Question
+from core.models import Test, QuestionType, Question, Answer, UserAnswer
 
 
 @admin.register(Test)
@@ -20,3 +20,14 @@ class QuestionTypeAdmin(admin.ModelAdmin):
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ['name', 'created_at', 'updated_at', 'test', 'type']
     list_display_links = ['name']
+
+
+@admin.register(Answer)
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = ['value', 'is_correct', 'question', 'type']
+    list_display_links = ['value']
+
+
+@admin.register(UserAnswer)
+class AnswerAdmin(admin.ModelAdmin):
+    list_display = ['user', 'answer', 'duration']

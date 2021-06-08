@@ -1,7 +1,6 @@
 from django.db import models
 from django.db.models import SET_NULL
 from django.utils.text import slugify
-
 from user.models import User
 
 
@@ -56,7 +55,7 @@ class Question(models.Model):
     type = models.IntegerField(choices=TYPES, default=SINGLE)
 
     def __str__(self) -> str:
-        return f'[{TYPES[self.type][1]}] {self.name}'
+        return f'[Type: {TYPES[self.type][1]}] {self.name}'
 
 
 class Answer(models.Model):
@@ -66,7 +65,7 @@ class Answer(models.Model):
     type = models.IntegerField(choices=TYPES, default=SINGLE)
 
     def __str__(self) -> str:
-        return f'[{TYPES[self.type][1]}] [{self.is_correct}] {self.value}'
+        return f'[{TYPES[self.type][1]}] [{self.question}] [{self.is_correct}] {self.value}'
 
 
 class UserAnswer(models.Model):
@@ -76,3 +75,10 @@ class UserAnswer(models.Model):
 
     def __str__(self) -> str:
         return f'[{self.user.__str__()}] - [{self.answer.__str__()}]'
+
+    def save(self, *args, **kwargs):
+        from analysis.models import QuestionAnalysis
+        question_analysis = QuestionAnalysis.objects.get_or_create(question_id=self.answer.question_id)
+        question_analysis[0].save()
+        print(question_analysis)
+        super().save(*args, **kwargs)

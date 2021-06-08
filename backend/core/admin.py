@@ -29,5 +29,5 @@ class AnswerAdmin(admin.ModelAdmin):
 
 
 @admin.register(UserAnswer)
-class AnswerAdmin(admin.ModelAdmin):
+class UserAnswerAdmin(admin.ModelAdmin):
     list_display = ['user', 'answer', 'duration']

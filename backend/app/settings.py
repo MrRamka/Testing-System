@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 
     # add 'core' app name so Django plugs it in to the project.
     'core',
-    'user'
+    'user',
+    'analysis'
 ]
 
 MIDDLEWARE = [

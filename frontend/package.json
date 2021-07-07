@@ -5,9 +5,9 @@
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "antd": "^4.14.0",
-    "autoprefixer": "^10.2.6",
+    "autoprefixer": "9",
     "axios": "^0.21.1",
-    "postcss": "8.3.5",
+    "postcss": "7",
     "postcss-cli": "^8.3.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -18,11 +18,12 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "tailwindcss": "^2.2.4",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -47,9 +48,9 @@
     "eslint-plugin-react-hooks": "^4.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "browserslist": {

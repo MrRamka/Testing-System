@@ -1,36 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Typography } from "antd";
+import { Spin } from "antd";
 import { useParams } from "react-router-dom";
 import isNil from "lodash.isnil";
 import { CardTestItem, StyledContent } from "../Main";
-import { mockMainPageData } from "../../mock/main_page";
-import { TestStatusSelect } from "../../components/TestStatusSelect";
-
-const { Title } = Typography;
+import { emptyCardItem, mockMainPageData } from "../../mock/main_page";
+import { Constructor } from "../../components/Constructor";
 
 export const TestConstructorPage = (): JSX.Element => {
   const { id: testId } = useParams<{ id: string }>();
   const isNewConstructor = isNil(testId) || testId.endsWith("new");
-  const [testData, setTestData] = useState<CardTestItem>();
+  const [testData, setTestData] = useState<CardTestItem>(emptyCardItem);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    setLoading(true);
     if (!isNewConstructor) {
       setTestData(mockMainPageData[+testId - 1]);
     }
+    setLoading(false);
   }, [isNewConstructor, testId]);
 
   return (
     <StyledContent>
       <div className="h-full">
-        <Title>Test information</Title>
-
-        <TestStatusSelect />
-
-        {isNewConstructor ? (
-          <p>Create new test</p>
-        ) : (
-          <p>Edit test {testData?.title}</p>
-        )}
+        <div className="w-2/3 mt-5">
+          {loading ? <Spin /> : <Constructor testData={testData} />}
+        </div>
       </div>
     </StyledContent>
   );

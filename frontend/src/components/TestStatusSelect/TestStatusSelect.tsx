@@ -1,19 +1,38 @@
 import React from "react";
 import { Badge, Select } from "antd";
-import { Option } from "antd/lib/mentions";
 import { TestSelectStatuses } from "./types";
 
-export const TestStatusSelect = (): JSX.Element => {
+interface TestStatusSelectProps {
+  currentStatus: TestSelectStatuses;
+}
+
+export const TestStatusSelect = ({
+  currentStatus,
+}: TestStatusSelectProps): JSX.Element => {
   return (
-    <Select defaultValue={TestSelectStatuses.Active} bordered={false}>
-      <Option key={TestSelectStatuses.Active}>
-        <Badge status="success" />
-        Active
-      </Option>
-      <Option key={TestSelectStatuses.Inactive}>
-        <Badge status="error" />
-        Inactive
-      </Option>
-    </Select>
+    <div>
+      <Select
+        defaultValue={currentStatus}
+        bordered={false}
+        className="font-semibold"
+      >
+        <Select.Option
+          key={TestSelectStatuses.Active}
+          className="font-semibold"
+          value={TestSelectStatuses.Active}
+        >
+          <Badge status="success" />
+          Active
+        </Select.Option>
+        <Select.Option
+          key={TestSelectStatuses.Inactive}
+          value={TestSelectStatuses.Inactive}
+          className="font-semibold"
+        >
+          <Badge status="error" />
+          Inactive
+        </Select.Option>
+      </Select>
+    </div>
   );
 };

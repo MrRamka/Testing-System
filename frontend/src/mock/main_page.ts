@@ -6,16 +6,23 @@ export const mockMainPageData: CardTestItem[] = [
     id: 1,
     title: "Test Title #1",
     status: TestSelectStatuses.Active,
+    description:
+      "Lorem ipsum dolor sit amet. Integer congue accumsan interdum. ",
+    questionCount: 30,
   },
   {
     id: 2,
     title: "Test Title #2",
     status: TestSelectStatuses.Inactive,
+    questionCount: 20,
   },
   {
     id: 3,
     title: "Test Title #3",
     status: TestSelectStatuses.Active,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue accumsan interdum.",
+    questionCount: 5,
   },
   {
     id: 4,

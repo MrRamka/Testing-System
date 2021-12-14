@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DragOutlined } from "@ant-design/icons";
 import { IQuestion } from "./types";
 import { Card } from "antd";
@@ -31,11 +31,12 @@ export const Question = ({
         </div>
         <div>
           <div className="w-40">
-            <QuestionType
-              type={qType}
-              isActive={isActive}
-              updateQType={setQType}
-            />
+            {/*<QuestionType*/}
+            {/*  type={qType}*/}
+            {/*  isActive={isActive}*/}
+            {/*  updateQType={setQType}*/}
+            {/*/>*/}
+            {qType}
           </div>
           <div>
             <span className="font-semibold">Name: </span>

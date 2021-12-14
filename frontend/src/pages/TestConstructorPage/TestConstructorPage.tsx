@@ -23,9 +23,7 @@ export const TestConstructorPage = (): JSX.Element => {
   return (
     <StyledContent>
       <div className="h-full">
-        <div className="w-2/3 mt-5">
-          {loading ? <Spin /> : <Constructor testData={testData} />}
-        </div>
+        {loading ? <Spin /> : <Constructor testData={testData} />}
       </div>
     </StyledContent>
   );

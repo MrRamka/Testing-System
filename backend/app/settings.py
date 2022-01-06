@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from datetime import timedelta
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,6 +42,9 @@ INSTALLED_APPS = [
     'corsheaders',
     # add rest_framework support to the project
     'rest_framework',
+    'rest_framework_swagger',
+    "drf_yasg",
+    "django_filters",
 
     # add 'core' app name so Django plugs it in to the project.
     'core',
@@ -143,7 +148,7 @@ SWAGGER_BASE_URL = os.getenv("SWAGGER_BASE_URL")
 
 # jwt
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
-JWT_ALGORITHM = "HS256"
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
 JWT_AUTH_HEADER_PREFIX = "jwt"
 
 SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": timedelta(days=1)}
@@ -151,7 +156,8 @@ SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": timedelta(days=1)}
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        # "rest_framework_simplejwt.authentication.JWTAuthentication",
+        'user.backends.JWTAuthentication',
         "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),

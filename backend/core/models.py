@@ -12,6 +12,7 @@ class Test(models.Model):
     slug = models.SlugField()
     random_order = models.BooleanField()
     author = models.ForeignKey(User, on_delete=SET_NULL, null=True)
+    isActive = models.BooleanField(default=True)
 
     def _generate_unique_slug(self):
         unique_slug = slugify(self.name)

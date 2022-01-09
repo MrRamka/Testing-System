@@ -18,7 +18,7 @@ export const StartTestPage = (): JSX.Element => {
 
   return (
     <StyledContent>
-      <p>{testData?.title}</p>
+      <p>{testData?.name}</p>
       <Button onClick={onClick}>Start test</Button>
     </StyledContent>
   );

@@ -1,20 +1,13 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import { Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { mockMainPageData } from "../../mock/main_page";
 import { StyledContent } from "./styles";
 import { TestsList } from "../../components/TestsList";
-import { MainPageControls } from "../../components/MainPageControls";
 import { CardTestItem } from "./types";
+import { useQuery } from "react-query";
 
 export const Main = (): JSX.Element => {
-  //TODO: Get data from server
-  const [data, setData] = useState<CardTestItem[]>(mockMainPageData);
-
-  //TODO: get more data from server
-  const onClick = useCallback(() => {
-    setData([...data, ...data]);
-  }, [data]);
+  const { data, isLoading } = useQuery<CardTestItem[]>("core/all-users-tests/");
 
   return (
     <StyledContent>
@@ -27,9 +20,9 @@ export const Main = (): JSX.Element => {
         prefix={<SearchOutlined />}
       />
 
-      <MainPageControls onClick={onClick} />
+      {/*<MainPageControls onClick={onClick} />*/}
 
-      <TestsList data={data} />
+      <TestsList data={data ?? []} isLoading={isLoading} />
     </StyledContent>
   );
 };

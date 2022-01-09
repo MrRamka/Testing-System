@@ -38,11 +38,9 @@ export const QuestionType = ({
   isActive,
   updateQType,
 }: QuestionTypeProps): JSX.Element => {
-  console.log(type);
   return (
     <>
       <Select
-        // defaultValue={type}
         value={type}
         className={`font-semibold rounded-md w-full ${getColorByType(type)}`}
         disabled={!isActive}

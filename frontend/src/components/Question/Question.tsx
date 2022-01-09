@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { DragOutlined } from "@ant-design/icons";
-import { IQuestion } from "./types";
+import { getQuestionTypeByNumberType, IQuestion } from "./types";
 import { Card } from "antd";
 import { QuestionType } from "./QuestionType";
 
@@ -18,7 +18,9 @@ export const Question = ({
   const isActiveClassNames = isActive ? "bg-gray-50 shadow-xl" : "bg-gray-100";
 
   const created_at = new Date(Date.parse(question.created_at));
-  const [qType, setQType] = useState(question.type);
+  const [qType, setQType] = useState(
+    getQuestionTypeByNumberType(question.type)
+  );
 
   return (
     <Card
@@ -31,12 +33,11 @@ export const Question = ({
         </div>
         <div>
           <div className="w-40">
-            {/*<QuestionType*/}
-            {/*  type={qType}*/}
-            {/*  isActive={isActive}*/}
-            {/*  updateQType={setQType}*/}
-            {/*/>*/}
-            {qType}
+            <QuestionType
+              type={qType}
+              isActive={isActive}
+              updateQType={setQType}
+            />
           </div>
           <div>
             <span className="font-semibold">Name: </span>

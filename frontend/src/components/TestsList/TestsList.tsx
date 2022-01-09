@@ -5,16 +5,17 @@ import { CardTestItem } from "../../pages";
 
 interface TestsListProps {
   data: CardTestItem[];
+  isLoading: boolean;
 }
 
-export const TestsList = ({ data }: TestsListProps): JSX.Element => {
+export const TestsList = ({ data, isLoading }: TestsListProps): JSX.Element => {
   return (
     <List
       grid={{
         gutter: 16,
         xs: 1,
         sm: 2,
-        md: 4,
+        md: 3,
         lg: 4,
         xl: 4,
         xxl: 4,
@@ -25,9 +26,7 @@ export const TestsList = ({ data }: TestsListProps): JSX.Element => {
           <MainPageCard item={item} />
         </List.Item>
       )}
-      pagination={{
-        pageSize: 12,
-      }}
+      loading={isLoading}
     />
   );
 };

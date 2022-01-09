@@ -15,7 +15,7 @@ export const TestTitleForm = ({
       layout="vertical"
       requiredMark={false}
       initialValues={{
-        title: testData?.title ?? "",
+        title: testData?.name ?? "",
       }}
     >
       <Form.Item

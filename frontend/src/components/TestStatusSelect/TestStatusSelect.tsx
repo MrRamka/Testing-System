@@ -4,10 +4,12 @@ import { TestSelectStatuses } from "./types";
 
 interface TestStatusSelectProps {
   currentStatus: TestSelectStatuses;
+  onSelect: (item: TestSelectStatuses) => void;
 }
 
 export const TestStatusSelect = ({
   currentStatus,
+  onSelect,
 }: TestStatusSelectProps): JSX.Element => {
   return (
     <div>
@@ -15,6 +17,7 @@ export const TestStatusSelect = ({
         defaultValue={currentStatus}
         bordered={false}
         className="font-semibold"
+        onSelect={onSelect}
       >
         <Select.Option
           key={TestSelectStatuses.Active}

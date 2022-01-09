@@ -3,14 +3,32 @@ import { Form, Input } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { makeRequiredFormFieldRule } from "../../constants/rules";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 export const Login: FC = () => {
   const history = useHistory();
 
-  const onSubmit = useCallback(() => {
-    //TODO: Add mutation
-    history.push("/main/");
-  }, [history]);
+  const onSubmit = useCallback(
+    (values) => {
+      const config = {
+        user: {
+          email: values.email,
+          password: values.password,
+        },
+      };
+
+      //TODO: EDIT
+      axios
+        .post("http://127.0.0.1:8000/v1.0/auth/login/", config)
+        .then((res) => {
+          const data = res.data.user.token;
+          localStorage.setItem("access-token", data);
+        });
+
+      history.push("/main/");
+    },
+    [history]
+  );
 
   return (
     <>

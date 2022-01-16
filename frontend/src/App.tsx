@@ -14,12 +14,25 @@ import { TestConstructorPage } from "./pages/TestConstructorPage";
 import { Menu } from "./components/Menu";
 import { Layout } from "antd";
 import { StartTestPage } from "./pages/StartTestPage";
+import logo from "./logo_white_full.svg";
+
+const { Header } = Layout;
 
 export const App = (): JSX.Element => {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <Layout>
+          <Header className="bg-logo-header h-1/2 ">
+            <div className="my-2">
+              <img
+                className="w-1/12"
+                src={logo}
+                alt="Казанский федеральный университет"
+                title="На главную"
+              />
+            </div>
+          </Header>
           <div className="h-screen bg-gray-50">
             <Layout className="bg-gray-50">
               <Menu />

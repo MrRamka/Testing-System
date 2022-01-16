@@ -5,9 +5,14 @@ import { StyledContent } from "./styles";
 import { TestsList } from "../../components/TestsList";
 import { CardTestItem } from "./types";
 import { useQuery } from "react-query";
+import { MainPageControls } from "../../components/MainPageControls";
 
 export const Main = (): JSX.Element => {
   const { data, isLoading } = useQuery<CardTestItem[]>("core/all-users-tests/");
+
+  const onClick = () => {
+    //
+  };
 
   return (
     <StyledContent>
@@ -20,7 +25,7 @@ export const Main = (): JSX.Element => {
         prefix={<SearchOutlined />}
       />
 
-      {/*<MainPageControls onClick={onClick} />*/}
+      <MainPageControls onClick={onClick} />
 
       <TestsList data={data ?? []} isLoading={isLoading} />
     </StyledContent>

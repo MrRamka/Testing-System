@@ -68,15 +68,17 @@ export const Constructor = ({ testData }: ConstructorProps): JSX.Element => {
             Add new question
           </Button>
         </div>
-
-        {(data ?? []).map((question) => (
-          <Question
-            key={question.id}
-            isActive={currentSection === question}
-            question={question}
-            onClick={() => setCurrentSelection(question)}
-          />
-        ))}
+        <div>
+          {(data ?? []).map((question) => (
+            <Question
+              key={question.id}
+              isActive={currentSection === question}
+              question={question}
+              onClick={() => setCurrentSelection(question)}
+              test_id={testData.id}
+            />
+          ))}
+        </div>
       </div>
       <div className="w-1/3 mt-5 ml-5">
         <ConstructorMenu

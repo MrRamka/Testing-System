@@ -23,17 +23,20 @@ export const App = (): JSX.Element => {
     <QueryClientProvider client={queryClient}>
       <Router>
         <Layout>
-          <Header className="bg-logo-header h-1/2 ">
-            <div className="my-2">
+          <Header className="bg-dark h-1/2 ">
+            <div className="my-2 flex">
               <img
                 className="w-1/12"
                 src={logo}
                 alt="Казанский федеральный университет"
                 title="На главную"
               />
+              {/*<p className="text-2xl font-sans font-semibold text-white mx-3">*/}
+              {/*  Test constructor*/}
+              {/*</p>*/}
             </div>
           </Header>
-          <div className="h-screen bg-gray-50">
+          <div className="h-full bg-gray-50">
             <Layout className="bg-gray-50">
               <Menu />
               <Switch>

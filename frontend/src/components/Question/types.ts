@@ -14,7 +14,7 @@ export interface IQuestion {
   image?: string;
   explanation?: string;
   created_at: string;
-  updated_at?: string;
+  updated_at: string;
 }
 
 export function getQuestionTypeByNumberType(type: number): IQuestionTypes {
@@ -28,9 +28,25 @@ export function getQuestionTypeByNumberType(type: number): IQuestionTypes {
     case 3:
       return IQuestionTypes.MATCHING;
     case 4:
-      return IQuestionTypes.MULTIPLE;
+      return IQuestionTypes.SEQUENCE;
   }
   return IQuestionTypes.SINGLE;
+}
+
+export function getNumberTypeByQuestionType(type: IQuestionTypes): number {
+  switch (type) {
+    case IQuestionTypes.SINGLE:
+      return 0;
+    case IQuestionTypes.MULTIPLE:
+      return 1;
+    case IQuestionTypes.TEXT:
+      return 2;
+    case IQuestionTypes.MATCHING:
+      return 3;
+    case IQuestionTypes.SEQUENCE:
+      return 4;
+  }
+  return 0;
 }
 
 /*

@@ -1,11 +1,11 @@
 export const strings = {
   testCard: {
-    edit: "Edit test",
-    run: "Run test",
+    edit: "Изменить",
+    run: "Запустить",
   },
   menu: {
-    mainPage: "Main page",
-    constrictor: "Constructor",
-    logout: "Logout",
+    mainPage: "Главная",
+    constrictor: "Конструктор",
+    logout: "Выход",
   },
 };

@@ -42,16 +42,11 @@ export const Menu = (): JSX.Element => {
           breakpoint="lg"
           collapsedWidth="0"
           width={MENU_WIDTH}
-          className="h-screen bg-gray-100"
+          className="bg-primary"
           theme="light"
         >
-          <div className="bg-white flex flex-col bg-gray-100">
-            <div className="flex justify-around mt-2 mb-3">
-              <p className="text-xl font-sans font-semibold">
-                Test constructor
-              </p>
-            </div>
-            <div className="flex justify-around mb-2">
+          <div className="bg-white flex flex-col bg-primary">
+            <div className="flex justify-around my-2">
               <MenuButton
                 icon={
                   <DatabaseOutlined style={{ verticalAlign: "0.125rem" }} />
@@ -74,7 +69,7 @@ export const Menu = (): JSX.Element => {
                 icon={<LogoutOutlined style={{ verticalAlign: "0.125rem" }} />}
                 to={R.LOGOUT}
                 title={strings.menu.logout}
-                className="text-red-500  hover:bg-red-100"
+                className="text-red-300  hover:bg-red-200"
               />
             </div>
           </div>

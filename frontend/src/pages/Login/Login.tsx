@@ -23,19 +23,20 @@ export const Login: FC = () => {
         .then((res) => {
           const data = res.data.user.token;
           localStorage.setItem("access-token", data);
+          history.push("/main/");
         });
-
-      history.push("/main/");
     },
     [history]
   );
 
   return (
     <>
-      <div className="flex space-x-4 flex items-center justify-center h-screen bg-blue-50">
+      <div className="flex space-x-5 flex items-center justify-center h-screen bg-primary">
         <div className="w-1/5">
           <div className="">
-            <p className="text-center text-4xl my-4 light">Log in</p>
+            <p className="text-center text-2xl my-4 light text-white">
+              Вход в личный кабинет
+            </p>
             <Form
               name="normal_login"
               className="login-form"
@@ -47,34 +48,35 @@ export const Login: FC = () => {
               <Form.Item
                 name="email"
                 rules={[
-                  makeRequiredFormFieldRule("Please enter email"),
+                  makeRequiredFormFieldRule("Введите почту"),
                   { type: "email" },
                 ]}
-                label="Enter your email"
+                label={<span className="text-white">Введите почту</span>}
               >
                 <Input
                   prefix={<UserOutlined className="site-form-item-icon" />}
-                  placeholder="Email"
+                  placeholder="Почта"
                   className="rounded-lg shadow-md "
                 />
               </Form.Item>
               <Form.Item
                 name="password"
-                rules={[makeRequiredFormFieldRule("Please enter password")]}
-                label="Enter your password"
+                rules={[makeRequiredFormFieldRule("Введите свой пароль")]}
+                label={<span className="text-white">Введите пароль</span>}
+                className="text-white"
               >
                 <Input
                   prefix={<LockOutlined className="site-form-item-icon" />}
                   type="password"
-                  placeholder="Password"
+                  placeholder="Пароль"
                   className="rounded-lg shadow-md "
                 />
               </Form.Item>
 
               <Form.Item>
-                <button className="rounded-md bg-blue-500 p-1 w-full h-full font-sans transition duration-300 ease-in-out cursor-pointer shadow-md ">
+                <button className="rounded-md bg-logo-header p-1 w-full h-full font-sans transition duration-300 ease-in-out cursor-pointer shadow-md border-2 border-white ">
                   <span className="text-xl text-white font-semibold">
-                    Log in
+                    Войти
                   </span>
                 </button>
               </Form.Item>

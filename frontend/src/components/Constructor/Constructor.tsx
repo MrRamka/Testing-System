@@ -35,7 +35,7 @@ export const Constructor = ({ testData }: ConstructorProps): JSX.Element => {
     <div className="flex">
       <div className="w-2/3 mt-5">
         <div className="flex justify-between items-center">
-          <Title>Test information</Title>
+          <Title>Редакторование теста</Title>
           <TestStatusSelect
             currentStatus={
               testData.isActive
@@ -56,7 +56,7 @@ export const Constructor = ({ testData }: ConstructorProps): JSX.Element => {
 
         <div className="flex justify-between items-center">
           <Title level={5} className="font-semibold">
-            Questions
+            Вопросы
           </Title>
 
           <Button
@@ -65,7 +65,7 @@ export const Constructor = ({ testData }: ConstructorProps): JSX.Element => {
             className="bg-blue-500 h-10 rounded-md"
             icon={<PlusOutlined style={{ display: "inline-flex" }} />}
           >
-            Add new question
+            Добавить новый вопрос
           </Button>
         </div>
         <div>

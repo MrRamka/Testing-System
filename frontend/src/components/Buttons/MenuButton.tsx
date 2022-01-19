@@ -19,7 +19,7 @@ export const MenuButton = ({
 }: MenuButtonProps): JSX.Element => {
   const history = useHistory();
 
-  const activeStyles = isActive ? "bg-gray-200 " : "";
+  const activeStyles = isActive ? "text-white " : "";
 
   return (
     <Button
@@ -27,9 +27,9 @@ export const MenuButton = ({
       icon={icon}
       title={title}
       className={
-        "w-3/4 border-0 hover:bg-gray-300 " +
-        "bg-gray-100 hover:text-gray-700 hover:shadow-sm rounded-md " +
-        "focus:bg-gray-200 focus:text-gray-700 text-lg " +
+        "w-3/4 border-0 " +
+        "bg-primary hover:bg-primary rounded-md hover:border-2 font-bold " +
+        "text-lg text-gray-100 " +
         activeStyles +
         className
       }

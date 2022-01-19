@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { DragOutlined } from "@ant-design/icons";
-import { getQuestionTypeByNumberType, IQuestion } from "./types";
+import {
+  getNumberTypeByQuestionType,
+  getQuestionTypeByNumberType,
+  IQuestion,
+} from "./types";
 import { Card, Spin } from "antd";
 import { QuestionType } from "./QuestionType";
 import { Answer } from "../Answer";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { AnswerResponse } from "../Answer/types";
+import { apiClient } from "../../api/apiClient";
 
 interface QuestionProps {
   isActive: boolean;
@@ -23,6 +28,7 @@ export const Question = ({
   const isActiveClassNames = isActive ? "bg-gray-50 shadow-xl" : "bg-gray-100";
 
   const created_at = new Date(Date.parse(question.created_at));
+  const updated_at = new Date(Date.parse(question.updated_at));
   const [qType, setQType] = useState(
     getQuestionTypeByNumberType(question.type)
   );
@@ -31,6 +37,16 @@ export const Question = ({
     `core/test-question-answers/${test_id}/${question.id}/`,
     { enabled: isActive }
   );
+
+  const updateQuestionMutation = useMutation(async (newData: IQuestion) => {
+    return apiClient
+      .put(`/core/questions/${test_id}/${newData.id}/`, {
+        ...newData,
+      })
+      .then(() => {
+        // queryClient.invalidateQueries(`core/test-questions/${test_id}/`);
+      });
+  });
 
   return (
     <Card
@@ -43,16 +59,22 @@ export const Question = ({
         </div>
         <div>
           <div>
-            <span className="font-semibold">Name: </span>
+            <span className="font-semibold">Название: </span>
             {question.name}
           </div>
           {isActive ? (
             <div>
-              <span className="font-semibold">Creation date: </span>
-              {created_at.toLocaleString()}
+              <p>
+                <span className="font-semibold">Дата создания: </span>
+                {created_at.toLocaleString()}
+              </p>
+              <p>
+                <span className="font-semibold">Дата изменения:</span>{" "}
+                {updated_at.toLocaleString()}
+              </p>
               {question.description ? (
                 <div>
-                  <span className="font-semibold">Description: </span>
+                  <span className="font-semibold">Описание: </span>
                   {question.description}
                 </div>
               ) : null}
@@ -62,7 +84,14 @@ export const Question = ({
             <QuestionType
               type={qType}
               isActive={isActive}
-              updateQType={setQType}
+              updateQType={(type) => {
+                setQType(type);
+                const newQuestion = {
+                  ...question,
+                  type: getNumberTypeByQuestionType(type),
+                };
+                updateQuestionMutation.mutate(newQuestion);
+              }}
             />
           </div>
 

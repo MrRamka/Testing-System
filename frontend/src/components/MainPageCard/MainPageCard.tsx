@@ -37,10 +37,28 @@ export const MainPageCard = ({ item }: CardProps): JSX.Element => {
         } font-semibold `}
       >
         <Card
-          title={item.name}
+          title={
+            <span>
+              <span className="font-semibold">Название:</span> {item.name}
+            </span>
+          }
           className="rounded-lg cursor-pointer shadow-md hover:shadow-xl"
           onClick={onClick}
         >
+          <div>
+            <p>
+              <span className="font-semibold">Дата создания:</span>{" "}
+              {new Date(Date.parse(item.created_at)).toLocaleString("ru-RU")}
+            </p>
+          </div>
+          {item.description ? (
+            <div>
+              <p>
+                <span className="font-semibold">Описание:</span>{" "}
+                {item.description}
+              </p>
+            </div>
+          ) : null}
           <div className="flex flex-wrap">
             <div className="mr-1">
               <PrimaryButton

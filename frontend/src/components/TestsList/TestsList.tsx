@@ -16,8 +16,8 @@ export const TestsList = ({ data, isLoading }: TestsListProps): JSX.Element => {
         xs: 1,
         sm: 2,
         md: 3,
-        lg: 4,
-        xl: 4,
+        lg: 3,
+        xl: 3,
         xxl: 4,
       }}
       dataSource={data}

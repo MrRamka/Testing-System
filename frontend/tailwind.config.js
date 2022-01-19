@@ -5,6 +5,8 @@ module.exports = {
     extend: {
       colors: {
         "logo-header": "#005590",
+        primary: "#005fa0",
+        dark: "#004373",
       },
     },
     minWidth: {
